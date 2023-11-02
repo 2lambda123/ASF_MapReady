@@ -20,11 +20,15 @@ LIBS  = \
 	-lm
 
 CFLAGS += $(GSL_CFLAGS) \
-  $(GLIB_CFLAGS) \
-  $(PROJ_CFLAGS) \
-  $(TIFF_CFLAGS) \
-  $(GEOTIFF_CFLAGS) \
-  $(JPEG_CFLAGS)
+ 	$(GLIB_CFLAGS) \
+ 	$(PROJ_CFLAGS) \
+ 	$(TIFF_CFLAGS) \
+ 	$(GEOTIFF_CFLAGS) \
+ 	$(JPEG_CFLAGS) \
+	$(HDF5_CFLAGS) \
+	$(GEOTIFF_CFLAGS) \
+	$(HDF5_CFLAGS) \
+        $(XML_CFLAGS)
 
 OBJS_M2X = write_hdf5_xml.o
 
@@ -36,5 +40,4 @@ write_hdf5_xml: $(OBJS_M2X)
 
 clean:
 	rm -f $(OBJS_M2X)
-
 

@@ -9,7 +9,7 @@ LIBS  = \
 	$(LIBDIR)/libasf_import.a \
 	$(LIBDIR)/libasf_raster.a \
 	$(LIBDIR)/asf_meta.a \
-	$(LIBDIR)/libshp.a \
+	$(SHAPELIB_LIBS) \
 	$(LIBDIR)/libasf_proj.a \
 	$(LIBDIR)/asf.a \
 	$(GSL_LIBS) \
@@ -32,7 +32,11 @@ CFLAGS += \
 	$(JPEG_CFLAGS) \
 	$(PROJ_CFLAGS) \
 	$(GLIB_CFLAGS) \
-	$(SHAPELIB_CFLAGS)
+	$(SHAPELIB_CFLAGS) \
+	$(HDF5_CFLAGS) \
+	$(GEOTIFF_CFLAGS) \
+	$(HDF5_CFLAGS) \
+	$(XML_CFLAGS)
 
 OBJS  = asf2geobrowse.o
 

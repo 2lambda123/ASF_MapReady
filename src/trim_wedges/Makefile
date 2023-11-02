@@ -1,3 +1,6 @@
+CFLAGS += $(HDF5_CFLAGS)
+CFLAGS += $(GEOTIFF_CFLAGS)
+CFLAGS += $(HDF5_CFLAGS)
 include ../../make_support/system_rules
 
 LIBS =  $(LIBDIR)/libasf_raster.a \
@@ -7,6 +10,7 @@ LIBS =  $(LIBDIR)/libasf_raster.a \
         $(LIBDIR)/asf.a \
         $(PROJ_LIBS) \
         $(GSL_LIBS) \
+	$(GLIB_LIBS) \
         $(XML_LIBS) \
 	-lm
 CFLAGS += $(PROJ_CFLAGS) $(GSL_CFLAGS) $(GLIB_CFLAGS)

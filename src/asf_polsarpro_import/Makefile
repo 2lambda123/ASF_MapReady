@@ -8,6 +8,10 @@ CFLAGS := \
 	$(TIFF_CFLAGS) \
 	$(JPEG_CFLAGS) \
 	$(GLIB_CFLAGS) \
+	$(HDF5_CFLAGS) \
+	$(GEOTIFF_CFLAGS) \
+	$(HDF5_CFLAGS) \
+	$(XML_CFLAGS) \
 	$(CFLAGS)
 
 LIBS  = \

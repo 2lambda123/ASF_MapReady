@@ -7,8 +7,10 @@ CFLAGS += $(W_ERROR) \
 	$(GEOTIFF_CFLAGS) \
 	$(JPEG_CFLAGS) \
 	$(XML_CFLAGS) \
+	$(HDF5_CFLAGS) \
 	$(PROJ_CFLAGS) \
 	$(GLIB_CFLAGS) \
+	$(SHAPELIB_CFLAGS) \
 	-D_REENTRANT \
 	$(GSL_CFLAGS) \
 	$(CFLAGS)
@@ -45,8 +47,7 @@ all: build_only
 	mv libasf_vector.a $(LIBDIR)
 	cp asf_vector.h $(ASF_INCLUDE_DIR)
 	mkdir -p $(SHAREDIR)
-	cp header.lst $(SHAREDIR)
-	cp *_data_dictionary.csv $(SHAREDIR)
+	cp -R data_dictionaries $(SHAREDIR)
 	cp convert2vector.config $(SHAREDIR)
 
 build_only: $(OBJS)

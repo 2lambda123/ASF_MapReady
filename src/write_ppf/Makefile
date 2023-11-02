@@ -15,6 +15,12 @@ LIBS  = \
 	$(ZLIB_LIBS) \
 	-lm
 
+CFLAGS += \
+	$(HDF5_CFLAGS) \
+	$(GEOTIFF_CFLAGS) \
+	$(HDF5_CFLAGS) \
+	$(XML_CFLAGS)
+
 OBJS  = write_ppf.o
 
 all: write_ppf clean

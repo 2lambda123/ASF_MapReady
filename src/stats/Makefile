@@ -1,3 +1,6 @@
+CFLAGS += $(HDF5_CFLAGS)
+CFLAGS += $(GEOTIFF_CFLAGS)
+CFLAGS += $(HDF5_CFLAGS)
 # Makefile for ASF stats program
 
 include ../../make_support/system_rules
@@ -9,6 +12,7 @@ LIBS  = \
 	$(LIBDIR)/asf.a \
 	$(LIBDIR)/libasf_raster.a \
 	$(GSL_LIBS) \
+	$(GLIB_LIBS) \
 	$(XML_LIBS) \
 	-lm -lz
 
@@ -21,7 +25,6 @@ OBJS  = statIO.o \
 	stats.o
 
 all: stats clean
-
 
 stats: $(OBJS)
 	$(CC) $(CFLAGS) -o stats $(OBJS) $(LIBS) $(LDFLAGS)

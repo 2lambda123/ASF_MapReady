@@ -1,11 +1,13 @@
+CFLAGS += $(HDF5_CFLAGS)
+CFLAGS += $(GEOTIFF_CFLAGS)
 # Makefile for asf_meta library
 
 include ../../make_support/system_rules
 
-LIBS = $(XML_LIBS) $(GSL_LIBS) $(PROJ_LIBS) -lm
+LIBS = $(XML_LIBS) $(GSL_LIBS) $(GLIB_LIBS) $(PROJ_LIBS) -lm
 
 # Had to add -Wno-unused-function because flex generates some
-CFLAGS += $(W_ERROR) -Wno-unused-function $(XML_CFLAGS)
+CFLAGS += $(W_ERROR) -Wno-unused-function $(XML_CFLAGS) $(GEOTIFF_CFLAGS) $(HDF5_CFLAGS)
 
 # Things used/needed by make's implicit rules for lex and yacc.
 # Need the GNU flex and bison, others are broken in variety of ways.
@@ -88,6 +90,7 @@ OBJS =  $(LEX_YACC_OBJS) \
 	fixed2gei.o \
 	frame_calc.o \
   gamma_dem2meta.o \
+  gcp2transform.o \
 	gei2fixed.o \
 	getLatLong.o \
 	getLoc.o \
@@ -130,6 +133,7 @@ OBJS =  $(LEX_YACC_OBJS) \
 	meta2terrasar.o \
 	meta2uavsar.o \
 	meta2smap.o \
+	meta2sentinel.o \
 	meta2iso.o \
 	meta_read.o \
 	meta_write.o \
@@ -201,6 +205,6 @@ distclean:
 	rm -f core *~ TAGS gdb_init.com
 
 test: *.t.c build_only
-	$(CC) $(CFLAGS) -o test *.t.c $(LIBDIR)/libcunit.a $(LIBDIR)/asf_meta.a $(LIBDIR)/asf.a $(LIBDIR)/libasf_proj.a $(LIBS) -lm -lz
+	$(CC) $(CFLAGS) -o test *.t.c $(CUNIT_LIBS) $(LIBDIR)/asf_meta.a $(LIBDIR)/asf.a $(LIBDIR)/libasf_proj.a $(LIBS) -lm -lz
 	./test
 

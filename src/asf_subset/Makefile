@@ -1,3 +1,6 @@
+CFLAGS += $(HDF5_CFLAGS)
+CFLAGS += $(GEOTIFF_CFLAGS)
+CFLAGS += $(HDF5_CFLAGS)
 include ../../make_support/system_rules
 
 TARGET = asf_subset
@@ -9,7 +12,7 @@ LIBS  = \
 	$(LIBDIR)/libasf_import.a \
 	$(LIBDIR)/libasf_raster.a \
 	$(LIBDIR)/asf_meta.a \
-	$(LIBDIR)/libshp.a \
+	$(SHAPELIB_LIBS) \
 	$(LIBDIR)/libasf_proj.a \
 	$(LIBDIR)/asf.a \
 	$(XML_LIBS) \
@@ -28,7 +31,8 @@ CFLAGS += \
   $(GEOTIFF_CFLAGS) \
   $(TIFF_CFLAGS) \
   $(JPEG_CFLAGS) \
-  $(SHAPELIB_CFLAGS)
+  $(SHAPELIB_CFLAGS) \
+  $(XML_CFLAGS)
 
 OBJS  = $(TARGET).o
 

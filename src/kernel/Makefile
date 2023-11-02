@@ -1,3 +1,6 @@
+CFLAGS += $(HDF5_CFLAGS)
+CFLAGS += $(GEOTIFF_CFLAGS)
+CFLAGS += $(HDF5_CFLAGS)
 include ../../make_support/system_rules
 
 PROG = kernel
@@ -9,6 +12,7 @@ LIBS =  $(LIBDIR)/libasf_raster.a \
         $(LIBDIR)/asf.a \
         $(PROJ_LIBS) \
         $(GSL_LIBS) \
+	$(GLIB_LIBS) \
         $(XML_LIBS) \
 	-lm
 

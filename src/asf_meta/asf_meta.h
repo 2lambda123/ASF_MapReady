@@ -62,6 +62,9 @@
 #define FLOAT_EQUIVALENT(a, b) (FLOAT_COMPARE_TOLERANCE \
                                 (a, b, ASF_EXPORT_FLOAT_MICRON))
 
+// Fitting maximum order
+#define MAX_FITTING_ORDER 45 
+
 // Flag to write ENVI header files for all viewable images
 extern int dump_envi_header;
 
@@ -110,6 +113,7 @@ typedef enum {
   DIVERGENCE,
   VORTICITY,
   SHEAR,
+  MODEL_OUTPUT,
   UNKNOWN_IMAGE_DATA_TYPE
 } image_data_type_t;
 
@@ -133,6 +137,7 @@ typedef enum {
   SMAP,
   SEASAT_H5,
   GRIDDED_RGPS,
+  SENTINEL,
   UNKNOWN_INPUT_FORMAT
 } input_format_t;
 
@@ -283,12 +288,12 @@ typedef struct {
   double source_pixel_size; // Original pixel size of the l/s -> lat/lon map
   double target_pixel_size; // New pixel size, after mapping to ground range
   int parameter_count;    // Number of parameters
-  double x[25];           // Transform coeffs for x (ls to lon)
-  double y[25];           // Transform coeffs for y (ls to lat)
+  double x[MAX_FITTING_ORDER];           // Transform coeffs for x (ls to lon)
+  double y[MAX_FITTING_ORDER];           // Transform coeffs for y (ls to lat)
   double origin_pixel;    // Origin pixel (P0)
   double origin_line;     // Origin line (L0)
-  double l[25];           // Transform coeffs for lines (lat/lon to l)
-  double s[25];           // Transform coeffs for samples (lat/lon to s)
+  double l[MAX_FITTING_ORDER];           // Transform coeffs for lines (lat/lon to l)
+  double s[MAX_FITTING_ORDER];           // Transform coeffs for samples (lat/lon to s)
   double origin_lat;      // Origin latitude [degrees]
   double origin_lon;      // Origin longitude [degrees]
   double map2ls_a[10];    // Transform coeffs for map -> L/S (lat/lon to s)
@@ -440,6 +445,7 @@ typedef struct {
   tsx_cal_params *tsx;
   r2_cal_params *r2;
   uavsar_cal_params *uavsar;
+  sentinel_cal_params *sentinel;
 } meta_calibration;
 
 typedef struct {
@@ -1046,6 +1052,12 @@ int isTerrasar_ext(char *dataFile, int checkPolarimetry, char **error);
 int isRadarsat2(char *dataFile, char **error);
 int isRadarsat2_ext(char *dataFile, int check_data, char **error);
 int isUAVSAR(char *dataFile, char **error);
+int isGeocoded(const char *dataFile);
+int isPolsarproMatrix(char *dataFile, char **matrixType, char **error);
+int isPolsarproDecomposition(char *dataFile, char **decompositionType,
+                             char **error);
+int isPolsarproSegmentation(const char *dataFile, char **error);
+int isPolsarproParameter(char *dataFile, char **error);
 
 // Prototypes for meta_geotiff.c
 void copy_proj_parms(meta_projection *dest, meta_projection *src);
@@ -1065,5 +1077,14 @@ meta_parameters* uavsar_insar2meta(uavsar_insar *params);
 
 // Prototypes for gamma_dem2meta.c
 meta_parameters *gamma_dem2meta(char *demFile, char *demPar);
+
+typedef struct {
+  int line, pixel;
+  double lat, lon;
+} gcp_location;
+
+// Prototypes from gcp2transform.c
+meta_transform *gcp2transform(gcp_location *gcp, int gcp_count, char *type);
+
 
 #endif

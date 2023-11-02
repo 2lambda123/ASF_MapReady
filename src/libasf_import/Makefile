@@ -1,3 +1,5 @@
+CFLAGS += $(HDF5_CFLAGS)
+CFLAGS += $(GEOTIFF_CFLAGS)
 # Makefile for libasf_import library
 
 include ../../make_support/system_rules
@@ -27,7 +29,9 @@ CFLAGS += $(W_ERROR) \
 	$(PROJ_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	-D_REENTRANT \
-	$(GSL_CFLAGS)
+	$(GSL_CFLAGS) \
+	$(HDF5_CFLAGS) \
+	$(GDAL_CFLAGS)
 
 # These defines enable various debugging behavior and output.  Leaving
 # debugging code in and available is all the rage these days, and is
@@ -84,6 +88,8 @@ OBJS  = \
 	import_roipac.o \
 	import_smap.o \
 	import_seasat_h5.o \
+	import_netcdf.o \
+	import_sentinel.o \
 	config_fgdc.o \
 	missing.o \
 	projected_image_import.o \
@@ -99,6 +105,8 @@ all: build_only
 	mv libasf_import.a $(LIBDIR)
 	cp asf_import.h fgdc_meta.h dem_meta.h prc_stvecs.h \
 	$(ASF_INCLUDE_DIR)
+	rm -rf $(SHAREDIR)/sentinel
+	cp -R sentinel $(SHAREDIR)
 
 build_only: $(OBJS)
 	rm -f libasf_import.a

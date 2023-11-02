@@ -116,8 +116,8 @@ void createBlockingStore(fetchRec *g)
 	FILE *outF;/*Blocking store file; output pointer*/
 	
 /*Create the blocking store file:*/
-	sprintf(g->blockName,"remap_%d_%d.blk",(int)getpid(),0);
-	//printf("   Creating image block file %s...\n",g->blockName);
+	sprintf(g->blockName,"remap_%d_%d.blk", (int)getpid(),0);
+	printf("   Creating image block file %s...\n",g->blockName);
 	outF=fopen_tmp_file(g->blockName,"wb");
 	
 /*Allocate buffers for copy*/

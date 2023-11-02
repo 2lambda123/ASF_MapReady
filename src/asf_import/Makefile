@@ -1,3 +1,5 @@
+CFLAGS += $(HDF5_CFLAGS)
+CFLAGS += $(GEOTIFF_CFLAGS)
 # asf_import
 
 include ../../make_support/system_rules
@@ -14,6 +16,7 @@ LIBS  = \
 	$(TIFF_LIBS) \
 	$(JPEG_LIBS) \
 	$(XML_LIBS) \
+	$(NETCDF_LIBS) \
 	$(PROJ_LIBS) \
 	$(GLIB_LIBS) \
 	$(GSL_LIBS) \
@@ -24,9 +27,11 @@ CFLAGS += $(W_ERROR) \
 	$(TIFF_CFLAGS) \
 	$(JPEG_CFLAGS) \
 	$(XML_CFLAGS) \
+	$(NETCDF_CFLAGS) \
 	$(PROJ_CFLAGS) \
 	$(GLIB_CFLAGS) \
-	$(GSL_CFLAGS)
+	$(GSL_CFLAGS) \
+	$(HDF5_CFLAGS)
 
 # These defines enable various debugging behavior and output.  Leaving
 # debugging code in and available is all the rage these days, and is

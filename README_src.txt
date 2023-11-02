@@ -34,22 +34,49 @@ installed on your system. In the list below, some of the listed packages
 will have additional dependencies that your package management system
 should automatically pull in.
 
-These are names on Ubuntu systems.  On CentOS, a few of the names are
-different.  On other systems, the packages may have different names.
+On Debian 9/Ubuntu 16.04, the following packages are necessary:
 
-  * bulid-essential
-  * gcc
-  * gcc-c++
-  * pkgconfig
-  * bison
-  * flex
-  * libgtk2.0-dev (gtk2-devel on CentOS)
-  * libglade2-dev (libglade2-devel on CentOS)
-  * gettext
-  * zlib1g-dev
-  * libgsl0-dev
-  * libgsl0ldb
+* gcc
+* g++
+* bison
+* flex
+* libcunit1-dev
+* libexif-dev
+* libfftw3-dev
+* libgdal-dev
+* libgeotiff-dev
+* libglade2-dev
+* libglib2.0-dev
+* libgsl-dev
+* libgtk2.0-dev
+* libjpeg-dev
+* libpng-dev
+* libproj-dev
+* libshp-dev
+* libtiff5-dev
+* libxml2-dev
 
+On Fedora/CentOS, the following packages are necessary:
+
+* gcc
+* gcc-c++
+* bison
+* flex
+* CUnit-devel
+* fftw-devel
+* gdal-devel
+* gsl-devel
+* gtk2-devel
+* libcurl-devel
+* libgeotiff-devel
+* libglade2-devel
+* libjpeg-turbo-devel
+* libtiff-devel
+* netcdf-devel
+* proj-devel
+* shapelib-devel
+
+On other systems, the package names may vary.
 
 #########################################################################
 INTRODUCTION:
@@ -89,7 +116,7 @@ asf_tools+---*bin/               These are the actual executables
          +---*lib/               This is where the libraries used to
          |                       build the binaries (executables) will go
          |
-         +----LICENSE.txt        The user license we ship with our tools
+         +----COPYING            The user license we ship with our tools
          |
          +----Makefile.in        File used by the configure script to
          |                       produce the makefile that will build the
