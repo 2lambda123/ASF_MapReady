@@ -62,7 +62,6 @@ libs = localenv.SharedLibrary("libasf_import", [
         "import_terrasar.c",
         "import_polsarpro.c",
         "import_fgdc_meta.c",
-        "import_dem.c",
         "import_roipac.c",
         "import_smap.c",
 	"import_sentinel.c",
